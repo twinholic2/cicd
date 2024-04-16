@@ -1,12 +1,10 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Python package
+name: PyTest
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -33,3 +31,9 @@ jobs:
       run: |
         pytest
         coverage run -m pytest && coverage report
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with: 
+        name: coverage-report
+        path: htmlcov
+        retention-days: 7
