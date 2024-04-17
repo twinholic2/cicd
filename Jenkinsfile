@@ -1,9 +1,9 @@
 pipeline {
-    agent any
     stages {
         stage('start') {
+            agent any
             steps {
-                slacksend(channel: '#프로젝트', message: 'start')
+                slacksend (channel: '#프로젝트', message: 'start')
             }
         }
         stage('ci') {
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sshagent(credentials:['cicd-pem-username']){
                     sh '''
-                    ssh -o "StrictHostKeyChecking" ec2-user@13.125.97.17 "cd cicd && git pull"
+                    ssh -o "StrictHostKeyChecking no" ec2-user@13.125.97.17 "cd cicd && git pull"
                     '''
                 }
             }
