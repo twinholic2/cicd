@@ -22,7 +22,7 @@ pipeline {
         }
         stage('deploy'){
             steps {
-                sshagent(credentials:['cicd-pem']){
+                sshagent(credentials:['cicd-pem-username']){
                     sh '''
                     ssh -o "StrictHostKeyChecking" ec2-user@13.125.97.17 "cd cicd && git pull"
                     '''
