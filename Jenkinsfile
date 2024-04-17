@@ -32,7 +32,7 @@ pipeline {
         }
         stage('end') {
             steps {
-                slacksend(channel: '#프로젝트', message: 'end')
+                slackSend(channel: '#프로젝트', message: 'end')
             }
         }        
     }
